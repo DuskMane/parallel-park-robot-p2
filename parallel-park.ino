@@ -78,7 +78,7 @@ void loop() {
     dstcF = distanceFront();
     dstcR = distanceRight();
     delay(100);
-    parkEt();
+    park();
     p=5; 
   } 
 }
@@ -149,104 +149,36 @@ void fullStop() {
   analogWrite(PWMR,0);
   
 }
-/*
-void turnRight() {
-  digitalWrite(INL1, LOW);
+void leftBack(){
+
   digitalWrite(INR1, LOW);
-  digitalWrite(INL2, HIGH);
   digitalWrite(INR2, HIGH);
-  analogWrite(PWML,100);
-  analogWrite(PWMR,0);
-}
-void turnRight90() {
-  turnRight();
-  delay(900);
-  fullStop();
-}
-void turnLeft() {
+  analogWrite(PWMR, 0);
+
   digitalWrite(INL1, HIGH);
-  digitalWrite(INR1, LOW);
   digitalWrite(INL2, LOW);
-  digitalWrite(INR2, HIGH);
-  
-  analogWrite(PWML,0);
-  analogWrite(PWMR,95);
-}
-void turnLeft90() {
-  turnLeft();
-  delay(950);
-  fullStop();
-}
-//smart commands
-void turnLeft180() {
-  turnLeft();
-  delay(950);
-  fullStop();
-}
-int turnLeftFor(int leftTime) {
-  turnLeft();
-  delay(leftTime);
-  fullStop();
-}
-void forwardFor(int forwardTime) {
-  fullForward();
-  delay(forwardTime);
-  fullStop();
-}
-void backFor(int backTime) {
-  backward();
-  delay(backTime);
-  fullStop();
-}
-void rotateLeft() {
-  digitalWrite(INL1, LOW);
-  digitalWrite(INR1, LOW);
-  digitalWrite(INL2, HIGH);
-  digitalWrite(INR2, HIGH);
-  analogWrite(PWML,100);
-  analogWrite(PWMR,125);  
-}
-void rotateRight() {
-  digitalWrite(INL1, LOW);
-  digitalWrite(INR1, LOW);
-  digitalWrite(INL2, HIGH);
-  digitalWrite(INR2, HIGH);
-  analogWrite(PWML,130);
-  analogWrite(PWMR,110);  
-}
-*/
-
-
-void solGeri(){
-
-  digitalWrite(INR1, LOW); // Sağ motorun ileri hareketi pasif
-  digitalWrite(INR2, HIGH); // Sağ motorun geri hareketi aktif
-  analogWrite(PWMR, 0); // Sağ motorun hızı 150
-
-  digitalWrite(INL1, HIGH); // Sol motorun ileri hareketi pasif
-  digitalWrite(INL2, LOW); // Sol motorun geri hareketi aktif
-  analogWrite(PWML, 140); // Sol motorun hızı 150
+  analogWrite(PWML, 140);
   
 }
 
-void sagGeri(){
+void rightBack(){
 
-  digitalWrite(INR1, HIGH); // Sağ motorun ileri hareketi pasif
-  digitalWrite(INR2, LOW); // Sağ motorun geri hareketi aktif
-  analogWrite(PWMR, 170); // Sağ motorun hızı 150
+  digitalWrite(INR1, HIGH);
+  digitalWrite(INR2, LOW); 
+  analogWrite(PWMR, 170); 
 
-  digitalWrite(INL1, HIGH); // Sol motorun ileri hareketi pasif
-  digitalWrite(INL2, LOW); // Sol motorun geri hareketi aktif
-  analogWrite(PWML, 0); // Sol motorun hızı 150
+  digitalWrite(INL1, HIGH);
+  digitalWrite(INL2, LOW); 
+  analogWrite(PWML, 0);
   
 }
 
-void parkEt(){
+void park(){
   backward();
   delay(700);
   fullStop();
   delay(1000);
-  solGeri();
+  leftBack();
   delay(600);
   fullStop();
   delay(1000);
@@ -254,7 +186,7 @@ void parkEt(){
   delay(900);
   fullStop();
   delay(1000);
-  sagGeri();
+  rightBack();
   delay(700);
   fullStop();
   delay(1000);
